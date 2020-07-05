@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('default');
-});
+Route::redirect("/", 'cliente', 301);
 Route::resource('cliente', 'ClienteController');
 Route::resource('especialidade', 'EspecialidadeController');
 Route::resource('veterinario', 'VeterinarioController');
