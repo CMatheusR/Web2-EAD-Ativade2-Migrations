@@ -9,21 +9,40 @@
         <div class="form-group">
             <div class='col-sm-16'>
                 <label>Nome</label>
-                <input type="text" class="form-control" name="nome"/>
+                <input type="text" class="form-control {{$errors->has('nome') ? 'is-invalid' : ''}}" name="nome" value="{{old('nome')}}"/>
+                @if($errors->has('nome'))
+                    <div class="invalid-feedback">
+                        {{$errors->first('nome')}}
+                    </div>
+                @endif
             </div>
             <div class="row">
                 <div class='col-sm-6'>
                     <label>CRMV</label>
-                    <input class="form-control" name="crmv"/>
+                    <input class="form-control {{$errors->has('crmv') ? 'is-invalid' : ''}}" name="crmv" value="{{old('crmv')}}"/>
+                    @if($errors->has('crmv'))
+                        <div class="invalid-feedback">
+                            {{$errors->first('crmv')}}
+                        </div>
+                    @endif
                 </div>
                 <div class="col-sm-6">
                     <label>Especialidade</label>
-                    <select class="form-control" name="especialidade_id">,
+                    <select class="form-control {{$errors->has('especialidade_id') ? 'is-invalid' : ''}}" name="especialidade_id" >,
                         <option value=""></option>
                         @foreach($dados as $espec)
-                            <option value="{{$espec->id}}">{{$espec->nome}}</option>
+                            @if($espec['id'] == old('especialidade_id'))
+                                <option value="{{$espec->id}}" selected>{{$espec->nome}}</option>
+                            @else
+                                <option value="{{$espec->id}}">{{$espec->nome}}</option>
+                            @endif
                         @endforeach
                     </select>
+                    @if($errors->has('especialidade_id'))
+                        <div class="invalid-feedback">
+                            {{$errors->first('especialidade_id')}}
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class='row' style="margin-top:20px">

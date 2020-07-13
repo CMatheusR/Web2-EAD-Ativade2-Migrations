@@ -41,7 +41,7 @@
         </nav>
         <div class="card">
             <div class="card-header bg-success">
-                <h3><b>{{$titulo}}</b></h2>
+                <h2><b>{{$titulo}}</b></h2>
             </div>
             <div class="card-body">
                 @yield('conteudo')

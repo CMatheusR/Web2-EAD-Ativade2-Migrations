@@ -10,11 +10,21 @@
         <div class="form-group">
             <div class='col-sm-16'>
                 <label>Nome</label>
-                <input type="text" class="form-control" name="nome" value="{{$dados['nome']}}">
+                <input type="text" class="form-control {{$errors->has('nome') ? 'is-invalid' : ''}}" name="nome" value="{{$dados['nome']}}">
+                @if($errors->has('nome'))
+                    <div class="invalid-feedback">
+                        {{$errors->first('nome')}}
+                    </div>
+                @endif
             </div>
             <div class='col-sm-16 '>
                 <label>Descrição</label>
-                <textarea class="form-control" name="descricao" >{{$dados['descricao']}}</textarea>
+                <textarea class="form-control {{$errors->has('descricao') ? 'is-invalid' : ''}}" name="descricao" >{{$dados['descricao']}}</textarea>
+                @if($errors->has('descricao'))
+                    <div class="invalid-feedback">
+                        {{$errors->first('descricao')}}
+                    </div>
+                @endif
             </div>
             <div class='row' style="margin-top:20px">
                 <div class='col-sm-4'>

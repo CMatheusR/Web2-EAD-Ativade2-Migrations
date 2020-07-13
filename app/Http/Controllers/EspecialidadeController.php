@@ -28,6 +28,17 @@ class EspecialidadeController extends Controller
 
     public function store(Request $request)
     {
+        $regras = [
+            'nome' => 'required|max:30|min:5',
+            'descricao' => 'required|max:250|min:5'
+        ];
+        $msgs = [
+            "required" => "O preenchimento do campo [:attribute] é obrigatório!",
+            "max" => "O campo [:attribute] possui tamanho máximo de [:max] caracteres!",
+            "min" => "O campo [:attribute] possui tamanho mínimo de [:min] caracteres!",
+        ];
+        $request->validate($regras, $msgs);
+
         $especialidades = new Especialidade();
         $especialidades->nome = $request->nome;
         $especialidades->descricao = $request->descricao;
@@ -50,6 +61,17 @@ class EspecialidadeController extends Controller
 
     public function update(Request $request, $id)
     {
+        $regras = [
+            'nome' => 'required|max:30|min:5',
+            'descricao' => 'required|max:250|min:5'
+        ];
+        $msgs = [
+            "required" => "O preenchimento do campo [:attribute] é obrigatório!",
+            "max" => "O campo [:attribute] possui tamanho máximo de [:max] caracteres!",
+            "min" => "O campo [:attribute] possui tamanho mínimo de [:min] caracteres!",
+        ];
+        $request->validate($regras, $msgs);
+
         $especialidades = Especialidade::find($id);
         $especialidades->nome = $request->nome;
         $especialidades->descricao = $request->descricao;

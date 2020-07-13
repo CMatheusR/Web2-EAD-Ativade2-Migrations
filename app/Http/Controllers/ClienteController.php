@@ -21,6 +21,17 @@ class ClienteController extends Controller
 
     public function store(Request $request)
     {
+        $regras = [
+            'nome' => 'required|max:100|min:10',
+            'email' => 'required|unique:clientes',
+            'telefone' => 'required|max:13|min:11'
+        ];
+        $msgs = [
+            "required" => "O preenchimento do campo [:attribute] é obrigatório!",
+            "max" => "O campo [:attribute] possui tamanho máximo de [:max] caracteres!",
+            "min" => "O campo [:attribute] possui tamanho mínimo de [:min] caracteres!",
+        ];
+        $request->validate($regras, $msgs);
 
         $cliente = new Cliente();
         $cliente->nome = $request->nome;
@@ -53,6 +64,18 @@ class ClienteController extends Controller
 
     public function update(Request $request, $id)
     {
+        $regras = [
+            'nome' => 'required|max:100|min:10',
+            'email' => 'required',
+            'telefone' => 'required|max:13|min:11'
+        ];
+        $msgs = [
+            "required" => "O preenchimento do campo [:attribute] é obrigatório!",
+            "max" => "O campo [:attribute] possui tamanho máximo de [:max] caracteres!",
+            "min" => "O campo [:attribute] possui tamanho mínimo de [:min] caracteres!",
+        ];
+        $request->validate($regras, $msgs);
+
         $cliente = Cliente::find($id);
         $cliente->nome = $request->nome;
         $cliente->email = $request->email;

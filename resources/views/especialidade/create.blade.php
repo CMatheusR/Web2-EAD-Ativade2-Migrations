@@ -11,13 +11,23 @@
             <div class="row">
                 <div class='col-sm-12'>
                     <label>Nome</label>
-                    <input type="text" class="form-control" name="nome"/>
+                    <input type="text" class="form-control {{$errors->has('nome') ? 'is-invalid' : ''}}" name="nome" value="{{old('nome')}}"/>
+                    @if($errors->has('nome'))
+                        <div class="invalid-feedback">
+                            {{$errors->first('nome')}}
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="row">
                 <div class='col-sm-12'>
                     <label>Descrição</label>
-                    <textarea class="form-control" name="descricao"></textarea>
+                    <textarea class="form-control {{$errors->has('descricao') ? 'is-invalid' : ''}}" name="descricao" >{{old('descricao')}}</textarea>
+                    @if($errors->has('descricao'))
+                        <div class="invalid-feedback">
+                            {{$errors->first('descricao')}}
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class='row' style="margin-top:20px">
